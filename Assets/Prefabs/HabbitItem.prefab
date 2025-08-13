@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 1228137732394587594}
   - component: {fileID: 565581112865888501}
   - component: {fileID: 4904257949094456720}
+  - component: {fileID: 2117666518552488968}
   m_Layer: 5
   m_Name: HabbitItem
   m_TagString: Untagged
@@ -311,7 +312,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 141.935, y: -38.541668}
+  m_AnchoredPosition: {x: 141.935, y: -38.541626}
   m_SizeDelta: {x: 275.29413, y: 77.083336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &565581112865888501
@@ -352,3 +353,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2117666518552488968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219308051983765905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e30ec6457bc541538db405a41d0bfff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _btn: {fileID: 7591999027858043315}
+  _checkmark: {fileID: 1532019683950105692}
+  _nameText: {fileID: 8242881686487564969}
