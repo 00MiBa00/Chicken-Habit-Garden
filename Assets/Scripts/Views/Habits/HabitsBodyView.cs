@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Datas.Habits;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Views.Habits
         [SerializeField] private RectTransform _container;
 
         private List<GameObject> _activeItems;
+        public event Action<int> OnCompletedHabitAction;
 
         public void SetInfo(HabitsData data)
         {
@@ -21,6 +23,7 @@ namespace Views.Habits
             {
                 GameObject go = Instantiate(_itemPrefab, _container);
                 HabitView view = go.GetComponent<HabitView>();
+                view.OnPressBtnAction += OnPressHabitToggle;
                 
                 _activeItems.Add(go);
             
@@ -34,9 +37,24 @@ namespace Views.Habits
             {
                 foreach (var item in _activeItems)
                 {
+                    HabitView view = item.GetComponent<HabitView>();
+                    view.OnPressBtnAction -= OnPressHabitToggle;
                     Destroy(item);
                 }
+                
+                _activeItems.Clear();
             }
+        }
+
+        private void OnPressHabitToggle(HabitView view)
+        {
+            view.OnPressBtnAction -= OnPressHabitToggle;
+
+            int index = _activeItems.IndexOf(view.gameObject);
+            
+            Debug.Log($"Index {index}");
+            
+            OnCompletedHabitAction?.Invoke(index);
         }
     }
 }

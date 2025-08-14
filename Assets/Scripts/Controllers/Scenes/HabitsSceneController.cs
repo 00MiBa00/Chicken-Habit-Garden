@@ -17,6 +17,7 @@ namespace Controllers.Scenes
         [SerializeField] private StreakView _streakView;
         [SerializeField] private GoalView _goalView;
         [SerializeField] private HabitsBodyView _habitsBodyView;
+        [SerializeField] private ItemsView _itemsView;
 
         [Space(5)] 
         [SerializeField] private PanelView _mainPanel;
@@ -29,6 +30,7 @@ namespace Controllers.Scenes
             UpdateStreak();
             UpdateGoal();
             SetHabits();
+            UpdateItems();
         }
 
         protected override void OnSceneStart()
@@ -50,11 +52,15 @@ namespace Controllers.Scenes
         protected override void Subscribe()
         {
             _addBtn.onClick.AddListener(OpenAddHabitPanel);
+            _resetStreakBtn.onClick.AddListener(OnPressResetStreakBtn);
+            _habitsBodyView.OnCompletedHabitAction += OnCompletedHabit;
         }
 
         protected override void Unsubscribe()
         {
             _addBtn.onClick.RemoveAllListeners();
+            _resetStreakBtn.onClick.RemoveAllListeners();
+            _habitsBodyView.OnCompletedHabitAction -= OnCompletedHabit;
         }
 
         private void SetHabits()
@@ -102,6 +108,30 @@ namespace Controllers.Scenes
             
             ClosePanel(_addHabitPanel);
             OpenPanel(_mainPanel);
+        }
+
+        private void OnCompletedHabit(int index)
+        {
+            _model.SetCompletedByIndex(index, true);
+            SetHabits();
+            UpdateGoal();
+        }
+
+        private void OnPressResetStreakBtn()
+        {
+            _model.ResetStreak();
+            _model.ClearHabits(true);
+            
+            SetHabits();
+            UpdateGoal();
+            UpdateStreak();
+        }
+
+        private void UpdateItems()
+        {
+            int index = _model.UnlockedElementsCount;
+            
+            _itemsView.SetItems(index);
         }
 
         private void OpenPanel(PanelView view)

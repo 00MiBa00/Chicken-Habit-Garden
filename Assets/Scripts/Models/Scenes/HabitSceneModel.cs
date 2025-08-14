@@ -16,6 +16,7 @@ namespace Models.Scenes
         private static string PathToday   => Path.Combine(Application.persistentDataPath, FILE_TODAY);
         private static string PathLastDay => Path.Combine(Application.persistentDataPath, FILE_LASTDAY);
 
+        public int UnlockedElementsCount => Streak / 2; 
         public int Streak { get; private set; }
         public string TodayYmd => DateTime.Now.Date.ToString("yyyy-MM-dd");
         public HabitsData Today { get; private set; } = new HabitsData();
@@ -101,21 +102,32 @@ namespace Models.Scenes
             return true;
         }
 
-        public bool RemoveHabit(string name)
+        public void ClearHabits(bool clearLastDaySnapshot = true)
         {
-            name = Normalize(name);
-            if (string.IsNullOrEmpty(name)) return false;
+            if (Today?.Habits != null)
+                Today.Habits.Clear();
 
-            bool removed = Today.Habits.RemoveAll(h => string.Equals(h.Name, name, StringComparison.OrdinalIgnoreCase)) > 0;
-            if (removed) SaveToday();
-            return removed;
+            SaveToday();
+            
+            if (clearLastDaySnapshot)
+            {
+                try
+                {
+                    if (File.Exists(PathLastDay)) File.Delete(PathLastDay);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[HabitSceneModel] Failed to delete last day snapshot: {e}");
+                }
+            }
         }
 
-        public bool SetCompleted(string name, bool completed)
+        public bool SetCompletedByIndex(int index, bool completed)
         {
-            var h = FindByName(name);
-            if (h == null) return false;
-            h.IsСompleted = completed;
+            if (Today?.Habits == null) return false;
+            if (index < 0 || index >= Today.Habits.Count) return false;
+
+            Today.Habits[index].IsСompleted = completed;
             SaveToday();
             return true;
         }

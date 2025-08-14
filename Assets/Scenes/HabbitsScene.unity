@@ -2379,6 +2379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1231478807}
+  - component: {fileID: 1231478808}
   m_Layer: 5
   m_Name: Items
   m_TagString: Untagged
@@ -2422,6 +2423,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1231478808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231478806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a00cedb0f364dde93ac6f8fcce944a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 2100958373}
+  - {fileID: 2038801994}
+  - {fileID: 1032442147}
+  - {fileID: 526328007}
+  - {fileID: 949370909}
+  - {fileID: 1752334460}
+  - {fileID: 285112581}
+  - {fileID: 1276075538}
+  - {fileID: 1319273641}
+  - {fileID: 1232929249}
+  - {fileID: 1441872773}
+  - {fileID: 1493918867}
+  - {fileID: 1548007311}
+  - {fileID: 726817466}
+  - {fileID: 1772547160}
+  - {fileID: 1140206358}
+  - {fileID: 786651430}
 --- !u!1 &1232929249
 GameObject:
   m_ObjectHideFlags: 0
@@ -3221,6 +3252,7 @@ MonoBehaviour:
   _streakView: {fileID: 787663288}
   _goalView: {fileID: 1395578996}
   _habitsBodyView: {fileID: 528415115}
+  _itemsView: {fileID: 1231478808}
   _mainPanel: {fileID: 1307846021}
   _addHabitPanel: {fileID: 1124711223}
 --- !u!1 &1493130918
