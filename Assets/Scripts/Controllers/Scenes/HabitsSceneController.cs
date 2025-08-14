@@ -1,4 +1,5 @@
 using Models.Scenes;
+using Types;
 using UnityEngine;
 using UnityEngine.UI;
 using Views.General;
@@ -53,6 +54,7 @@ namespace Controllers.Scenes
         {
             _addBtn.onClick.AddListener(OpenAddHabitPanel);
             _resetStreakBtn.onClick.AddListener(OnPressResetStreakBtn);
+            _backBtn.onClick.AddListener(OnPressBackBtn);
             _habitsBodyView.OnCompletedHabitAction += OnCompletedHabit;
         }
 
@@ -60,6 +62,7 @@ namespace Controllers.Scenes
         {
             _addBtn.onClick.RemoveAllListeners();
             _resetStreakBtn.onClick.RemoveAllListeners();
+            _backBtn.onClick.RemoveAllListeners();
             _habitsBodyView.OnCompletedHabitAction -= OnCompletedHabit;
         }
 
@@ -125,6 +128,11 @@ namespace Controllers.Scenes
             SetHabits();
             UpdateGoal();
             UpdateStreak();
+        }
+
+        private void OnPressBackBtn()
+        {
+            base.LoadScene(SceneType.MenuScene);
         }
 
         private void UpdateItems()

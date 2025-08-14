@@ -14,6 +14,7 @@ namespace Controllers.Scenes
         [SerializeField] private List<ShopItemView> _shopItemViews;
         [SerializeField] private GameObject _notPanel;
         [SerializeField] private Text _textGameObject;
+        [SerializeField] private Button _backbtn;
 
         private ShopSceneModel _model;
         private Sequence _seq;
@@ -40,11 +41,13 @@ namespace Controllers.Scenes
 
         protected override void Subscribe()
         {
+            _backbtn.onClick.AddListener(OnPressBackBtn);
             _shopItemViews.ForEach(item => item.OnPressBtnAction += OnPressShopItem);
         }
 
         protected override void Unsubscribe()
         {
+            _backbtn.onClick.RemoveAllListeners();
             _shopItemViews.ForEach(item => item.OnPressBtnAction -= OnPressShopItem);
         }
 
@@ -95,6 +98,11 @@ namespace Controllers.Scenes
                     PlayAnimNotification();
                     break;
             }
+        }
+        
+        private void OnPressBackBtn()
+        {
+            base.LoadScene(SceneType.MenuScene);
         }
         
         private void PlayAnimNotification()

@@ -1,4 +1,5 @@
 using System.Collections;
+using Types;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -54,11 +55,11 @@ namespace Controllers.Scenes
         protected abstract void Subscribe();
         protected abstract void Unsubscribe();
 
-        protected void LoadScene(string sceneName)
+        protected void LoadScene(SceneType type)
         {
             SetClickClip();
             
-            StartCoroutine(DelayLoadScene(sceneName));
+            StartCoroutine(DelayLoadScene(type.ToString()));
         }
 
         protected void SetClickClip()

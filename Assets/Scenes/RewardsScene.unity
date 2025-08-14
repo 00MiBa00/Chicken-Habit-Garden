@@ -2238,6 +2238,7 @@ MonoBehaviour:
   - {fileID: 1684354607}
   - {fileID: 170593524}
   _collectBtn: {fileID: 172192387}
+  _backBtn: {fileID: 1286779998}
   _rewardObject: {fileID: 679541032}
   _rewardPanel: {fileID: 588843343}
 --- !u!1 &897351506

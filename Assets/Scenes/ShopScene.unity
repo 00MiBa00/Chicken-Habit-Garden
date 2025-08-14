@@ -372,6 +372,7 @@ MonoBehaviour:
   - {fileID: 1308538056}
   _notPanel: {fileID: 1460529572}
   _textGameObject: {fileID: 835028327}
+  _backbtn: {fileID: 910941618}
 --- !u!1 &158484861
 GameObject:
   m_ObjectHideFlags: 0

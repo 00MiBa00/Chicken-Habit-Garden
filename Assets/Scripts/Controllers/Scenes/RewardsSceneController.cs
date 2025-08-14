@@ -13,6 +13,7 @@ namespace Controllers.Scenes
     {
         [SerializeField] private List<RewardItemView> _rewardItemViews;
         [SerializeField] private Button _collectBtn;
+        [SerializeField] private Button _backBtn;
         [SerializeField] private GameObject _rewardObject;
         [SerializeField] private GameObject _rewardPanel;
 
@@ -46,12 +47,14 @@ namespace Controllers.Scenes
         {
             _rewardItemViews.ForEach(item => item.OnPressBtnAction += OnPressRewardItem);
             _collectBtn.onClick.AddListener(OnPressCollectBtn);
+            _backBtn.onClick.AddListener(OnPressBackBtn);
         }
 
         protected override void Unsubscribe()
         {
             _rewardItemViews.ForEach(item => item.OnPressBtnAction -= OnPressRewardItem);
             _collectBtn.onClick.RemoveAllListeners();
+            _backBtn.onClick.RemoveAllListeners();
         }
 
         private void SetRewardsStates()
@@ -82,6 +85,11 @@ namespace Controllers.Scenes
             Wallet.AddMoney(1);
             
             PlayAnimReward();
+        }
+
+        private void OnPressBackBtn()
+        {
+            base.LoadScene(SceneType.MenuScene);
         }
 
         private void PlayAnimReward()
