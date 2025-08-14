@@ -9,7 +9,7 @@ namespace Values
 
         public static int Money
         {
-            get => PlayerPrefs.GetInt("WalletMoney", 500);
+            get => PlayerPrefs.GetInt("WalletMoney", 0);
 
             private set
             {

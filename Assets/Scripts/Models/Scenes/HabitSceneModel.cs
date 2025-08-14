@@ -12,6 +12,7 @@ namespace Models.Scenes
         private const string FILE_TODAY   = "habits_today.json";
         private const string FILE_LASTDAY = "habits_last_day.json";
         private const string KEY_STREAK   = "HabitSceneModel.Streak";
+        private const string LastSnapshotKey = "HabitSceneModel.LastSnapshotYmd";
 
         private static string PathToday   => Path.Combine(Application.persistentDataPath, FILE_TODAY);
         private static string PathLastDay => Path.Combine(Application.persistentDataPath, FILE_LASTDAY);
@@ -74,12 +75,16 @@ namespace Models.Scenes
         {
             try
             {
-                var closed = AreAllCompleted(Today);
+                bool closed = AreAllCompleted(Today);
                 var snapshot = new LastDayHabitData
                 {
                     Ymd      = TodayYmd,
                     IsClosed = closed,
-                    Habits   = Today
+                    Habits   = new HabitsData {
+                        Habits = Today.Habits
+                            .Select(h => new HabitData { Name = h.Name, IsСompleted = h.IsСompleted })
+                            .ToList()
+                    }
                 };
                 Save(PathLastDay, snapshot);
                 return true;
@@ -91,11 +96,27 @@ namespace Models.Scenes
             }
         }
         
+        public bool TrySnapshotToday()
+        {
+            string lastYmd = PlayerPrefs.GetString(LastSnapshotKey, "");
+
+            if (lastYmd == TodayYmd) return false;
+            
+            bool ok = CloseTodayAndMakeSnapshot();
+            if (ok)
+            {
+                PlayerPrefs.SetString(LastSnapshotKey, TodayYmd);
+                PlayerPrefs.Save();
+            }
+            return ok;
+        }
+        
         public bool AddHabit(string name)
         {
             name = Normalize(name);
             if (string.IsNullOrEmpty(name)) return false;
-            if (Today.Habits.Any(h => string.Equals(h.Name, name, StringComparison.OrdinalIgnoreCase))) return false;
+            if (Today.Habits.Any(h => string.Equals(h.Name, name, StringComparison.OrdinalIgnoreCase)))
+                return false;
 
             Today.Habits.Add(new HabitData { Name = name, IsСompleted = false });
             SaveToday();
@@ -140,7 +161,7 @@ namespace Models.Scenes
             SaveStreak();
         }
         
-        private void LoadStreak() => Streak = PlayerPrefs.GetInt(KEY_STREAK, 0);
+        private void LoadStreak() => Streak = PlayerPrefs.GetInt(KEY_STREAK, 5);
 
         private void SaveStreak()
         {

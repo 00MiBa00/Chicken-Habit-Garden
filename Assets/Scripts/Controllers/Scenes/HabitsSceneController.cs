@@ -40,7 +40,7 @@ namespace Controllers.Scenes
 
         protected override void OnSceneDisable()
         {
-            
+            _model.TrySnapshotToday();
         }
 
         protected override void Initialize()
