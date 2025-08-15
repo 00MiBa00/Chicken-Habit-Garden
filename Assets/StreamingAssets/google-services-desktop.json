@@ -1,0 +1,31 @@
+{
+  "project_info": {
+    "project_number": "211691346096",
+    "project_id": "chicken-habit-garden",
+    "storage_bucket": "chicken-habit-garden.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211691346096:ios:bbd928bffe992019414375",
+        "android_client_info": {
+          "package_name": "com.nurviq.lampex"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSr_eS_Td9mjHInLKpPqN3Z_k486QwRgI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
