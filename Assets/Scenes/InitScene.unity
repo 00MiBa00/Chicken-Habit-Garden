@@ -470,7 +470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2102398464
 Transform:
   m_ObjectHideFlags: 0
@@ -615,11 +615,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcedScreenOrientation: 1
-  endpoint: https://chickeneggcooktimer.com
-  appsflyerDevID: Qaf5LR7YmLd8M78LMitfwT
-  IOS_ID: 6747754113
+  endpoint: https://chickenhabitgarden.com
+  appsflyerDevID: EyqPAqSgXDW5pjVcvJiktS
+  IOS_ID: 6751107989
   _sleepObjects:
-  - {fileID: 0}
+  - {fileID: 2102398463}
   loadingScreen: {fileID: 4888793957740582427}
   notificationRequestScreen: {fileID: 6683138660147419812}
   noNetScreen: {fileID: 6062668445884567609}
