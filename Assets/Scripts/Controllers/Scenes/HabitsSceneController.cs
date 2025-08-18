@@ -128,6 +128,7 @@ namespace Controllers.Scenes
             SetHabits();
             UpdateGoal();
             UpdateStreak();
+            UpdateItems();
         }
 
         private void OnPressBackBtn()

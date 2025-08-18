@@ -161,7 +161,7 @@ namespace Models.Scenes
             SaveStreak();
         }
         
-        private void LoadStreak() => Streak = PlayerPrefs.GetInt(KEY_STREAK, 0);
+        private void LoadStreak() => Streak = PlayerPrefs.GetInt(KEY_STREAK, 10);
 
         private void SaveStreak()
         {

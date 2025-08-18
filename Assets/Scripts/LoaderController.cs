@@ -32,6 +32,15 @@ public class LoaderController : MonoBehaviour, IAppsFlyerConversionData
 
     void Awake()
     {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            noNetScreen.gameObject.SetActive(true);
+            loadingScreen.gameObject.SetActive(false);
+            notificationRequestScreen.gameObject.SetActive(false);
+
+            return;
+        }
+        
         if (PushStatusState == PushStatus.good)
             FirebaseMessaging.MessageReceived += OnMessageRecieved;
         
@@ -173,6 +182,14 @@ public class LoaderController : MonoBehaviour, IAppsFlyerConversionData
 
     void SetupWebView()
     {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            noNetScreen.gameObject.SetActive(true);
+            loadingScreen.gameObject.SetActive(false);
+            notificationRequestScreen.gameObject.SetActive(false);
+            return;
+        }
+        
         _webView = gameObject.AddComponent<UniWebView>();
         _webView.EmbeddedToolbar.Hide();
         _webView.SetSupportMultipleWindows(false, true);
